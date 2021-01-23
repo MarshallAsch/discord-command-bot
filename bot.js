@@ -25,20 +25,20 @@ function discardCommand(string) {
 
 function sendMessage(channel, message) {
     return channel.send(message)
-        .then((r) => logger.log('Successfully sent message: ', +r))
+        .then((r) => logger.log('Successfully sent message: ', + r))
         .catch((e) => logger.log('Error: could not send message: ', e));
 }
 
 
 function runCommand(command, message) {
     // lookup in config file
-    const file = fs.readFileSync('./config.yml', {encoding:'utf8', flag:'r'})
+    const file = fs.readFileSync('/config/config.yml', {encoding:'utf8', flag:'r'})
     const config = YAML.parse(file)
     const commandConfig = config.commands.map(e => Object.values(e)[0]).find(e => e.name === command);
 
     if (commandConfig) {
         try {
-            const stdout = execFileSync(`startscripts/${commandConfig.script}`);
+            const stdout = execFileSync(`/config/startscripts/${commandConfig.script}`);
             logger.log(stdout.toString());
             sendMessage(message.channel, "command ran successfully")
         } catch (err) {
