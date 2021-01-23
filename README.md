@@ -16,13 +16,13 @@ For me the script involves checking if the computer is on, and power it on if ne
 and then ssh into the computer and start the server. (an example script can be found in the [/startscripts] folder).
 
 
-This discord bot has been packaged into a Docker container that can be found [here](https://hub.docker.com/r/marshallasch/discordCommandBot), and is run as the following:
+This discord bot has been packaged into a Docker container that can be found [here](https://hub.docker.com/r/marshallasch/discord-command-bot), and is run as the following:
 
 ```bash
-$ docker run -d -v config:/config -e DISCORD_TOKEN=<some token> marshallasch/discordCommandBot
+$ docker run -d -v config:/config -e DISCORD_TOKEN=<some token> marshallasch/discord-command-bot
 ```
 
 The first time the container is run the config folder will be generated with a `startscripts` folder,
 a sample `config.yml` file, as well as an ssh keypair (it will not be generated if it already exists).
 
-The scripts are bash scripts that are run from within the container. 
+The scripts are bash scripts that are run from within the container.
