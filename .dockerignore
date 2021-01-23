@@ -1,0 +1,6 @@
+node_modules/*
+startscripts/*
+.dockerignore
+.gitignore
+Dockerfile
+README.md

@@ -1,0 +1,7 @@
+commands:
+    - command:
+        name: start minecraft
+        script: startMinecraft.sh
+    - command:
+        name: shutdown
+        script: shutdown.sh

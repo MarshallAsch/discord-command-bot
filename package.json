@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "fs": "^0.0.1-security",
+    "rfr": "^1.2.3",
+    "yaml": "^1.10.0"
+  }
+}
