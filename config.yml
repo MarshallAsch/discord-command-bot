@@ -3,5 +3,8 @@ commands:
         name: start minecraft
         script: startMinecraft.sh
     - command:
-        name: shutdown
-        script: shutdown.sh
+        name: test
+        script: script.sh
+listen_channels:
+    - "channelID"
+    - "channelID"

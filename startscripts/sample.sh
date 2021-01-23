@@ -1,4 +1,4 @@
-##!/usr/bin/env bash
+#!/usr/bin/env bash
 
 
 # This script will start a docker container running a minecraft server
@@ -8,7 +8,7 @@
 HOST=ip
 MAC=mac
 
-IS_UP=$(ping -c 3 -noq  $HOST >/dev/null; echo "$?") # if up this will be 0
+IS_UP=$(ping -c 3 -nq  $HOST >/dev/null; echo "$?") # if up this will be 0
 
 
 if [[ $IS_UP -ne 0 ]]; then
@@ -17,5 +17,5 @@ if [[ $IS_UP -ne 0 ]]; then
     sleep 15 # give it 15 seconds for the machine to powerup
 fi
 
-
-ssh user@$HOST 'docker start minecraft'
+ping -c 3 -nq  $HOST
+ssh -o StrictHostKeyChecking=no -i /config/id_rsa user@$HOST 'docker start minecraft'

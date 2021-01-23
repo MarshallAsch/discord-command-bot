@@ -10,7 +10,7 @@ const fs = require('fs');
 const logger = source('logger');
 
 const client = new Discord.Client();
-
+const config = loadConfig();
 
 // this will remove all whitespace beteen tokens
 function splitStringBySpace(string) {
@@ -29,24 +29,28 @@ function sendMessage(channel, message) {
         .catch((e) => logger.log('Error: could not send message: ', e));
 }
 
+function loadConfig() {
+    const file = fs.readFileSync('/config/config.yml', {encoding:'utf8', flag:'r'});
+    const config = YAML.parse(file);
+    const commandList = config.commands.map(e => Object.values(e)[0]);
+
+    config.commands = commandList;
+    return config;
+}
 
 function runCommand(command, message) {
-    // lookup in config file
-    const file = fs.readFileSync('/config/config.yml', {encoding:'utf8', flag:'r'})
-    const config = YAML.parse(file)
-    const commandConfig = config.commands.map(e => Object.values(e)[0]).find(e => e.name === command);
+    const commandConfig = config.commands.find(e => e.name === command);
 
     if (commandConfig) {
         try {
             const stdout = execFileSync(`/config/startscripts/${commandConfig.script}`);
             logger.log(stdout.toString());
-            sendMessage(message.channel, "command ran successfully")
+            sendMessage(message.channel, "command ran successfully");
         } catch (err) {
             logger.log(err);
-            sendMessage(message.channel, "command failed")
+            sendMessage(message.channel, "command failed");
         }
     }
-
 }
 
 client.once('ready', () => {
@@ -59,16 +63,16 @@ client.on('error', (err) => {
 });
 
 client.on('message', (message) => {
-    logger.log(`Message received: {${message.content}}`);
 
     // Handle message if not from self
-    if (!message.author.bot) {
-        message.content.toLowerCase().startsWith('!run');
+    if (!message.author.bot &&
+        message.content.toLowerCase().startsWith('!run') &&
+        config.listen_channels.includes(message.channel.id)) {
+
+        logger.log(`Command received: {${message.content}}`);
 
         const content = discardCommand(message.content);
         runCommand(content, message);
-
-
     }
 });
 
