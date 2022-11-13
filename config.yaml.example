@@ -1,0 +1,18 @@
+
+reload_time: 5m
+connection:
+  username: user
+  host: host.local
+  privateKeyFile: /path/to.key
+commands:
+  - name: space
+    description: Check the amount of free space
+    command: df -h /
+    allowed_users:
+      - 12344556 #me
+    blocked_users: []
+  - name: ls
+    description: list the files
+    command: ls ~/homelab
+    blocked_users: []
+

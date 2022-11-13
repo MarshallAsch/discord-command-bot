@@ -4,3 +4,4 @@ startscripts/*
 .gitignore
 Dockerfile
 README.md
+.env
