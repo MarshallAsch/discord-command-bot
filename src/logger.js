@@ -89,7 +89,7 @@ function error(err, ...rest) {
 }
 // medium priority leveled log
 function warning(msg, ...rest) {
-  log('warning', msg, ...rest);
+  log('warn', msg, ...rest);
 }
 // low priority leveled log
 function info(msg, ...rest) {

@@ -16,7 +16,7 @@ ENTRYPOINT /entrypoint.sh
 
 ENV NODE_ENV=production
 ENV CONFIG_FILE="/config/config.yaml"
-ENV KEY_FILE="/config/id_rsa"
+ENV KEY_FILE="/config/id_ed25519"
 
 RUN apt-get update && apt-get install wakeonlan
 

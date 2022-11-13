@@ -50,7 +50,7 @@ Select the server you want to add it to and your all set.
 The command bot has been designed to be deployed as a docker image, probably as a larger docker compose project.
 
 1. Make sure that your `config.yaml` file is in the `./config` directory
-2. make sure that your ssh token is in `/config/id_rsa` (although the path / name can be changed using the `KEY_FILE` environment variable). If they key does not exist it will be generated on the first run.
+2. make sure that your ssh token is in `/config/id_ed25519` (although the path / name can be changed using the `KEY_FILE` environment variable). If they key does not exist it will be generated on the first run.
 
 ```bash
 docker run -d -v './config:/config' \
