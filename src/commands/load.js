@@ -9,11 +9,13 @@ const { remoteCommand } = source('src/commands/exec');
 
 function generateCommandFunction(command) {
   return async (interaction, connection) => {
-    if (command.allowed_users !== undefined && !(interaction.user.id in command.allowed_users)) {
+    if (command.allowed_users !== undefined
+      && !command.allowed_users.includes(interaction.user.id)) {
       return interaction.reply('You are not allowed to use this command');
     }
 
-    if (command.blocked_users !== undefined && (interaction.user.id in command.blocked_users)) {
+    if (command.blocked_users !== undefined
+      && command.blocked_users.includes(interaction.user.id)) {
       return interaction.reply('You are not allowed to use this command');
     }
 
