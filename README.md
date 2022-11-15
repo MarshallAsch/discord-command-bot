@@ -73,13 +73,13 @@ commands:
     description: Check the amount of free space
     command: df -h /mnt/plex
     allowed_users:
-      - 1234567890
+      - '1234567890'
     blocked_users: []
   - name: ls
     description: list the files
     command: ls ~/homelab
     blocked_users:
-      - 0987654321
+      - '0987654321'
 ```
 
 #### reload_time (optional)
@@ -111,9 +111,10 @@ The actual command that will be run on the remote host
 ##### allowed_users (optional)
 An optional list of discord userIds of users who are allowed to use this command.
 If it is not set then all users that are not on the blocked list can use the command.
+The list of id's must be quoted (strings).
 
 ##### blocked_users (optional)
 An optional list of discord userIds of users who are not allowed to use this command.
 Any user who is in this list will not be able to use the command.
-
+The list of id's must be quoted (strings).
 
